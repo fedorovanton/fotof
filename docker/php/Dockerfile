@@ -19,9 +19,6 @@ RUN apt-get update && apt-get install -y \
 # Установка Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Установка Yii2 без использования fxp/composer-asset-plugin
-RUN composer create-project --prefer-dist yiisoft/yii2-app-advanced /var/www/html
-
 # Устанавливаем рабочую директорию
 WORKDIR /var/www/html
 
