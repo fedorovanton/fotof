@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $h1;
             'photo' => [
                 'label' => 'Фотография',
                 'value' => function (OrderPhotos $model) {
-                    return Html::img($model->getPhotoUrl(), ['img-thumbnail']);
+                    return Html::img($model->getPhotoUrl(), ['style' => 'width:400px']);
                 },
                 'format' => 'raw',
             ],
