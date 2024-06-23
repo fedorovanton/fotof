@@ -4,9 +4,9 @@ return [
     'components' => [
         'db' => [
             'class' => \yii\db\Connection::class,
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
+            'dsn' => 'mysql:host=mariadb;port=3306;dbname=fotof_db',
             'username' => 'root',
-            'password' => '',
+            'password' => '123456',
             'charset' => 'utf8',
         ],
         'mailer' => [
