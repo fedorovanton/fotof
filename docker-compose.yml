@@ -1,0 +1,44 @@
+services:
+
+  mariadb:
+    image: mariadb:10.3
+    volumes:
+      - type: volume
+        source: db_data
+        target: /var/lib/mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: fotof_db
+    networks:
+      - fotof-network
+
+  nginx:
+    image: "nginx:latest"
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./docker/logs/nginx:/var/log/nginx
+      - ./app:/var/www/html
+    networks:
+      - fotof-network
+
+  web:
+    build: ./docker/php
+    volumes:
+      - ./app:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - fotof-network
+
+networks:
+  fotof-network:
+    driver: bridge
+
+volumes:
+  db_data:
